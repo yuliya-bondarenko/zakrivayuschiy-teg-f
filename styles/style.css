@@ -229,9 +229,6 @@ main ul li:not(:first-child):not(:last-child) {
   inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
   background-blend-mode: hard-light;
   opacity: 50%;
-}
-
-.card__content::before {
   text-shadow:
   -1px 0 var(--text-shadow), 
   0 1px var(--text-shadow),
@@ -392,6 +389,7 @@ main ul li:not(:first-child):not(:last-child) {
   block-size: 38px;
   inline-size: 43px;
   padding: 0;
+  border: none;
 }
 
 .like-icon {
@@ -525,10 +523,6 @@ main ul li:not(:first-child):not(:last-child) {
   cursor: pointer;
 }
 
-.card__icon-button {
-  border: none;
-}
-
 .card__like-button {
   inline-size: 130px;
   block-size: 38px;
@@ -556,7 +550,7 @@ main ul li:not(:first-child):not(:last-child) {
 .footer__button {
   inline-size: clamp(19.125rem, 18.3988rem + 3.0986vw, 21.1875rem);
   block-size: 84 px;
-  margin: clamp(3.25rem, 3.294rem + -0.1878vw, 3.125rem) auto 0; 
+  margin: clamp(3.25rem, 3.294rem + -0.1878vw, 3.125rem) auto 0;
   background-color: var(--background-color);
   padding: 15px 20px 15px 16px;
   border: 2px solid var(--accent-color);

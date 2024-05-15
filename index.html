@@ -19,7 +19,7 @@
   <body class="page">
     <dialog class="dialog" id="dialog-id">
       <div class="dialog__group">
-        <div clacc="dialog__conteiner-icon">
+        <div class="dialog__conteiner-icon">
           <svg 
             class="dialog__icon"  
             width="39" 
@@ -32,13 +32,16 @@
         <p class="dialog__text">Вставьте дискету, чтобы продолжить</p>
       </div>
       <form method="dialog">
-        <button class="dialog__button button-all" type="submit">
+        <button 
+            class="dialog__button button-all" 
+            type="button" 
+            onclick="window['dialog-id'].close();">
           <span class="dialog__button-text">ок</span>
         </button>
       </form>
     </dialog>
     <header class="header">
-      <h1 class="header__title">&lt/HTML&gt</h1>
+      <h1 class="header__title">&lt;/HTML&gt;</h1>
       <p class="header__text">закрывающий тег</p>
       <nav class="theme-menu header__theme-menu">
         <!-- Не меняйте разметку этого списка, иначе скрипты перестанут работать -->
@@ -300,13 +303,14 @@
             </div>
           </article>
         </li>
+      </ul>
     </main>
     <footer class="footer">
       <button class="footer__button button-all"
           type="button" 
           onclick="window['dialog-id'].showModal()" 
           aria-controls="dialog-id">
-        <div class="footer__button-icon">
+        <span class="footer__button-icon">
           <svg 
           class="footer__icon"  
           width="39" 
@@ -315,8 +319,8 @@
           >
             <use href="./svg/diskette (1).svg#diskette"></use>
           </svg>
-        </div>
-        <p class="footer__text">Сохранить на память</p>
+        </span>
+        <span class="footer__text">Сохранить на память</span>
       </button>
     </footer>
     <script src="./scripts/like.js"></script>
