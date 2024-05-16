@@ -389,7 +389,6 @@ main ul li:not(:first-child):not(:last-child) {
   block-size: 38px;
   inline-size: 43px;
   padding: 0;
-  border: none;
 }
 
 .like-icon {
