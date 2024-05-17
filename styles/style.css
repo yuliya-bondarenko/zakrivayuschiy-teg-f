@@ -1,9 +1,9 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-family: var(--regular-font), sans-serif;
+  font-family: var(--regular-font), fantasy;
   font-weight: var(--font-weight-normal);
-  font-variation-settings: 'wght' 400;
+  font-variation-settings: 'wght' var(--font-weight-normal);
   background-color: var(--background-color);
   color: var(--accent-color);
   background-image: var(--background-image);
@@ -19,17 +19,16 @@
   background-color: var(--background-color);
   border: 2px solid var(--accent-color);
   color: var(--accent-color);
-  position: fixed;
-  inset: 0;
   padding-block-start: 30px;
   padding-block-end: 30px;
   padding-inline-start: 42px;
-  padding-inline-end: 42px;
   margin: auto;
 }
 
 .dialog[open] {
   display: grid;
+  align-items: center;
+  justify-items: center;
 }
 
 .dialog::backdrop {
@@ -38,7 +37,7 @@
 
 .dialog__group {
   display: flex;
-  gap: 20px;
+  gap: 19px;
 }
 
 .dialog__conteiner-icon {
@@ -50,6 +49,10 @@
   margin-block-start: 12px;
   inline-size: 39px;
   block-size: auto;
+}
+
+.dialog__form {
+  inline-size: 100%;
 }
 
 .dialog__button {
@@ -65,6 +68,7 @@
   position: relative;
   mix-blend-mode: difference;
   color: var(--color-button-card);
+  text-transform: uppercase;
 }
 
 .dialog__text {
@@ -83,12 +87,14 @@
   border: 2px solid var(--accent-color);
 }
 
-.header__title {
+.header__link-logo {
+  text-decoration: none;
+  text-transform: uppercase;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   padding: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem) clamp(0.875rem, -1.4688rem + 10vw, 7.53125rem) 20px;
 }
 
-.header__text {
+.header__title {
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   padding: 0 clamp(5rem, 2.8983rem + 8.9671vw, 10.96875rem) 25px;
   text-transform: uppercase;
@@ -127,15 +133,6 @@
   animation-direction: alternate;
 }
 
-@keyframes arrow {
-  from {
-    inset-inline-start: -15px;
-  }
-  to {
-    inset-inline-start: -11px;
-  }
-}
-
 .theme-menu__button:disabled, 
 .theme-menu__button:hover {
   color: var(--assent-color-opacity);
@@ -170,41 +167,36 @@
 
 .content {
   display: grid;
-  gap: clamp(3.125rem, 3.081rem + 0.1878vw, 3.25rem);
+  gap: 50px;
+}
+
+.content__margin {
+  margin-block-end: 2px;
 }
 
 .card {
   background-color: var(--background-color);
-  font-family: var(--variable-font), fantasy;
+  font-family: var(--variable-font), sans-serif;
   border: 2px solid var(--accent-color);
 }
 
 .card__title {
-  font-variation-settings: 'wght' 700;
+  font-variation-settings: 'wght' var(--font-weight-bold);
   line-height: 21.78px;
   text-align: left;
   font-size: 18px;
   padding-inline-start: 10px;
   padding-inline-end: 24px;
-  padding-block-start: clamp(0.21875rem, 0.2298rem + -0.0469vw, 0.1875rem);
-  padding-block-end: clamp(0.34375rem, 0.3988rem + -0.2347vw, 0.1875rem);
 }
 
-main ul li:first-of-type .card__title {
-  padding-block-start: clamp(0.25rem, 0.272rem + -0.0939vw, 0.1875rem);
-  padding-block-end: clamp(0.375rem, 0.441rem + -0.2817vw, 0.1875rem);
+.card__title-padding-first-card {
+  padding-block-start: 4px;
+  padding-block-end: 5px;
 }
 
-main ul li:not(:first-child) .card__description {
-  padding-block-start: 27px;
-}
-
-main ul li:first-child {
-  margin-block-end: 51px;
-}
-
-main ul li:not(:first-child):not(:last-child) {
-  margin-block-end: 50px;
+.card__title-padding-card {
+  padding-block-start: 3.5px;
+  padding-block-end: 5.5px;
 }
 
 .card__image-container {
@@ -217,9 +209,8 @@ main ul li:not(:first-child):not(:last-child) {
   position: relative;
 }
 
-.card__content::before {
-  content: '</HTML>';
-  font-family: var(--regular-font);
+.card__label {
+  font-family: var(--regular-font), fantasy;
   font-size: 14px;
   line-height: 14px;
   text-align: left;
@@ -229,109 +220,23 @@ main ul li:not(:first-child):not(:last-child) {
   inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
   background-blend-mode: hard-light;
   opacity: 50%;
-  text-shadow:
-  -1px 0 var(--text-shadow), 
-  0 1px var(--text-shadow),
-  1px 0 var(--text-shadow),
-  0 -1px var(--text-shadow);
+  mix-blend-mode: hard-light;
+  text-shadow: 0 0 1px var(--text-shadow);
 }
 
 @supports((text-stroke: 1px var(--text-shadow)) or (-webkit-text-stroke: 1px var(--text-shadow))) {
-  .card__content::before {
+  .card__label {
       -webkit-text-stroke: 1px var(--text-shadow);
       text-stroke: 1px var(--text-shadow);
       text-shadow: none;
   }
 }
 
-.card__content-psevdo::before {
-  content: '<CSS>';
-  font-family: var(--regular-font);
-  font-size: 14px;
-  line-height: 14px;
-  text-align: left;
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 25px;
-  inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
-  background-blend-mode: hard-light;
-  opacity: 50%;
-}
-
-.card__content-psevdoel::before {
-  content: '<desigions>';
-  font-family: var(--regular-font);
-  font-size: 14px;
-  line-height: 14px;
-  text-align: left;
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 25px;
-  inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
-  background-blend-mode: hard-light;
-  opacity: 50%;
-}
-
-.card__content-psevdo-element::before {
-  content: 'care';
-  font-family: var(--regular-font);
-  font-size: 14px;
-  line-height: 14px;
-  text-align: left;
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 25px;
-  inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
-  background-blend-mode: hard-light;
-  opacity: 50%;
-}
-
-.content-psevdo-element-2::before {
-  content: '<support>';
-  font-family: var(--regular-font);
-  font-size: 14px;
-  line-height: 14px;
-  text-align: left;
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 25px;
-  inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
-  background-blend-mode: hard-light;
-  opacity: 50%;
-}
-
-.content-psevdo-element-3::before {
-  content: '<lifes-style: none;>';
-  font-family: var(--regular-font);
-  font-size: 14px;
-  line-height: 14px;
-  text-align: left;
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 25px;
-  inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
-  background-blend-mode: hard-light;
-  opacity: 50%;
-}
-
-.content-psevdo-element-4::before {
-  content: '<experience>';
-  font-family: var(--regular-font);
-  font-size: 14px;
-  line-height: 14px;
-  text-align: left;
-  position: absolute;
-  z-index: 1;
-  inset-block-start: 25px;
-  inset-inline-end: clamp(0.8125rem, 0.5484rem + 1.1268vw, 1.5625rem);
-  background-blend-mode: hard-light;
-  opacity: 50%;
-}
-
 .card__image {
   block-size: 100%;
   inline-size: 100%;
   filter: contrast(110%);
+  object-fit: contain;
 }
 
 .card__image-pale {
@@ -364,9 +269,19 @@ main ul li:not(:first-child):not(:last-child) {
 
 .card__description {
   border-block-start: 2px solid var(--accent-color);
-  padding: 25px;
+  padding-inline: 25px;
+  padding-block-end: 25px;
   display: grid;
   gap: 27px;
+}
+
+
+.card__description-padding-first-card {
+  padding-block-start: 25px;
+}
+
+.card__description-padding-card {
+  padding-block-start: 27px;
 }
 
 .card__text {
@@ -389,6 +304,7 @@ main ul li:not(:first-child):not(:last-child) {
   block-size: 38px;
   inline-size: 43px;
   padding: 0;
+  cursor: pointer;
 }
 
 .like-icon {
@@ -405,89 +321,6 @@ main ul li:not(:first-child):not(:last-child) {
   border: 2px solid var(--accent-color);
   transition: border 0.3s ease;
   outline: none;
-}
-
-.sparks {
-  opacity: 0;
-}
-
-.core {
-  fill: var(--background-color);
-  transition: fill 0.3s linear 0.03s;
-}
-
-.like-icon .contour {
-  fill: var(--color-conture-heart);
-  transition: fill 0.1s linear;
-}
-
-.like-icon:hover .core {
-  fill: var(--color-conture-heart);
-  transition: fill 0.3s linear;
-}
-
-.like-icon:active .core {
-  fill: var(--color-background-heart);
-  transition: fill 0.3s linear;
-}
-
-.main-body {
-  fill: var(--background-color);
-  transition: fill 0.3s linear;
-}
-
-.like-icon:hover .main-body {
-  fill: var(--color-conture-heart);
-  transition: fill 0.3s linear 0.05s;
-}
-
-.like-icon:active .main-body {
-  fill: var(--color-background-heart);
-  transition: fill 0.3s linear 0.05s;
-}
-
-.like-icon.is-liked .core {
-  fill: var(--color-background-heart);
-  transition: fill 0.3s linear;
-}
-
-.like-icon.is-liked .main-body {
-  fill: var(--color-background-heart);
-  transition: fill 0.3s linear 0.05s;
-}
-
-.like-icon.is-liked .contour {
-  fill: var(--color-background-heart);
-  transition: fill 0.3s linear 0.06s;
-}
-
-.like-icon.is-liked .heart {
-  animation: heart 0.3s ease-in alternate 0.1s;
-  transform-origin: center;
-}
-
-.like-icon.is-liked .sparks {
-  animation: sparks 0.3s ease-in alternate 0.3s;
-}
-
-@keyframes heart {
-  from {
-    transform: scale(1);
-  }
-
-  to {
-    transform: scale(1.5);
-  }
-}
-
-@keyframes sparks {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 .button-all {
@@ -541,40 +374,39 @@ main ul li:not(:first-child):not(:last-child) {
   color: var(--color-button-card);
 }
 
-.footer {
+.section {
   display: flex;
   justify-content: center;
 }
 
-.footer__button {
+.section__button {
   inline-size: clamp(19.125rem, 18.3988rem + 3.0986vw, 21.1875rem);
   block-size: 84 px;
   margin: clamp(3.25rem, 3.294rem + -0.1878vw, 3.125rem) auto 0;
   background-color: var(--background-color);
-  padding: 15px 20px 15px 16px;
+  padding: 15px 6px;
   border: 2px solid var(--accent-color);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.footer__text {
+.section__text {
   position: relative;
   font-size: 14px;
-  line-height: 12.6px;
-  text-align: end;
+  line-height: 12px;
+  text-align: left;
   margin-block-start: 8px;
   color: var(--color-button-card);
   mix-blend-mode: difference;
-  word-spacing: -1px;
 }
 
-.footer__button-icon {
+.section__button-icon {
   inline-size: clamp(1.75rem, 1.904rem + -0.6573vw, 1.3125rem);
   block-size: auto;
 }
 
-.footer__icon {
+.section__icon {
   inline-size: 100%;
   height: auto;
   color: var(--color-button-card);
@@ -587,25 +419,28 @@ main ul li:not(:first-child):not(:last-child) {
     padding-inline-end: 30px;
   }
 
-  main ul li:first-child {
-    margin-block-end: 52px;
+  .card__title-padding-first-card {
+    padding-block-start: 5px;
+    padding-block-end: 5px;
   }
 
-  main ul li:not(:first-child) .card__description {
-    padding-block-start: 27px;
+  .card__title-padding-card {
+    padding-block-start: 5px;
+    padding-block-end: 5px;
   }
 
-  .footer__button {
+  .card__description-padding-card {
+    padding-block-start: 26px;
+  }
+
+  .section__button {
     flex-direction: row;
     gap: 8px;
     block-size: 55px;
+    padding-inline-start: 14px;
   }
 
-  .footer__icon {
+  .section__icon {
     inline-size: 21px;
-  }
-
-  .footer__text {
-    word-spacing: -2px;
   }
 }
